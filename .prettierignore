@@ -1,0 +1,22 @@
+# Ignore artifacts:
+build
+.next
+out
+*.log
+
+# Ignore node_modules:
+node_modules
+
+# Ignore configuration files:
+*.config.js
+*.config.ts
+*.config.cjs
+*.config.mjs
+
+# Ignore other common directories:
+public
+coverage
+
+# Ignore IDE/editor specific files:
+.vscode
+.idea

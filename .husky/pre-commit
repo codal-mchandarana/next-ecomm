@@ -1,0 +1,16 @@
+echo "Running lint-staged..."
+
+npm run lint
+
+if [ $? -ne 0 ]; then
+  echo "Linting failed. Aborting commit."
+  exit 1
+fi
+
+
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Aborting commit."
+  exit 1
+fi
+
+echo "Pre-commit checks passed!"
