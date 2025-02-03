@@ -24,7 +24,15 @@ module.exports = {
     },
   },
   rules: {
-    semi: ["error","always"],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "jsx-a11y/anchor-has-content": "off",
+    "semi": ["error","always"],
     "import/no-default-export": "off",
     "unicorn/filename-case": "off",
     "no-redeclare": "error",
