@@ -58,7 +58,10 @@ export default {
   		},
       spacing: {
 		    '1/11': '5.25%'  // This defines 1/8th of the width
-      }
+      },
+	  maxWidth: {
+        'screen-xxl': '1410px', // Customize this value as needed
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],
