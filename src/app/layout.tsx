@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Roboto, Fira_Code } from 'next/font/google'; // Replacing invalid fonts
 import './globals.css';
 import type { JSX } from 'react';
+import Header from '@/components/Custom/Header';
+import Footer from '@/components/Custom/Footer';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -26,8 +28,10 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({
 }): JSX.Element => {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${firaCode.variable} antialiased`}>
+      <body className={`h-screen bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat ${roboto.variable} ${firaCode.variable} antialiased`}>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

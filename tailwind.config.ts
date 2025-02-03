@@ -55,7 +55,10 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+      spacing: {
+		    '1/11': '5.25%'  // This defines 1/8th of the width
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],

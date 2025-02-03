@@ -10,7 +10,7 @@ const ProductCard: React.FC<ProductCardInterface> = ({
   product: { id, title, images, discount, price },
 }): JSX.Element => {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800">
       <div className="h-56 w-full">
         <a href={`product/${String(id)}`}>
           <Image
