@@ -23,6 +23,7 @@ module.exports = {
       },
     },
   },
+  ignorePatterns: ["next.config.ts"],
   rules: {
     "react/function-component-definition": [
       "error",
