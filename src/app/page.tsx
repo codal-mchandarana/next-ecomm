@@ -1,10 +1,8 @@
-import { Button } from '@/components/ui/button';
+import { type JSX } from 'react';
+import ProductListing from '@/pages/ProductListing';
 
-export default function Home() {
-  return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] place-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-      <h1>Ecommerce Website Home page here ------ </h1>
-      <Button>Click me</Button>
-    </div>
-  );
-}
+export const Home: React.FC = (): JSX.Element => {
+  return <ProductListing />;
+};
+
+export default Home;
