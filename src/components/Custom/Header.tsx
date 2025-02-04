@@ -46,19 +46,19 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
             size={26}
           />
           <ul className="flex gap-8 text-lg font-normal">
-            <Link href="/Support">
+            <Link href="/support">
               <li className="cursor-pointer">SUPPORT</li>
             </Link>
-            <Link href="/Terms">
+            <Link href="/terms">
               <li className="cursor-pointer">TERMS</li>
             </Link>
-            <Link href="/Privacy">
+            <Link href="/privacy">
               <li className="cursor-pointer">PRIVACY</li>
             </Link>
-            <Link href="/Accessibility">
+            <Link href="/accessibility">
               <li className="cursor-pointer">ACCESSIBILITY</li>
             </Link>
-            <Link href="/Cookies">
+            <Link href="/cookies">
               <li className="cursor-pointer">COOKIES</li>
             </Link>
           </ul>
