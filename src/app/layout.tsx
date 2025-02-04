@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Roboto, Fira_Code } from 'next/font/google'; // Replacing invalid fonts
 import './globals.css';
 import type { JSX } from 'react';
-import Header from '@/components/Custom/Header';
 import Footer from '@/components/Custom/Footer';
 
 const roboto = Roboto({
@@ -28,8 +27,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({
 }): JSX.Element => {
   return (
     <html lang="en">
-      <body className={`h-screen bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat ${roboto.variable} ${firaCode.variable} antialiased`}>
-        <Header />
+      <body className={`h-screen bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat font-plex ${roboto.variable} ${firaCode.variable} antialiased`}>
         {children}
         <Footer />
       </body>

@@ -9,7 +9,7 @@ export default {
   ],
   theme: {
   	extend: {
-  		colors: {
+  	  colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -50,17 +50,20 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		},
-  		borderRadius: {
+  	  },
+  	  borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		},
+  	  },
       spacing: {
 		    '1/11': '5.25%'  // This defines 1/8th of the width
       },
 	  maxWidth: {
         'screen-xxl': '1410px', // Customize this value as needed
+      },
+	  fontFamily: {
+        plex: ["IBM Plex Mono", "monospace"],
       },
   	}
   },
