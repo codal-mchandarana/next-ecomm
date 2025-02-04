@@ -65,7 +65,7 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
         </div>
       ) : null}
       <div className="mr-6">
-        <Link href="/Cart">
+        <Link href="/cart">
           <ShoppingBag className="cursor-pointer" absoluteStrokeWidth />
         </Link>
       </div>
