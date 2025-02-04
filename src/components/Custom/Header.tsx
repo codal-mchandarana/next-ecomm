@@ -23,14 +23,14 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
     );
 
   return (
-    <div className="fixed top-0 flex h-14 w-full items-center justify-between bg-white shadow-lg">
+    <div className="fixed top-0 z-10 flex h-14 w-full items-center justify-between bg-white shadow-lg">
       {!toggle ? (
         <div className="ml-12 flex w-1/11 justify-between">
           <Equal
             onClick={() => {
               setToggle(true);
             }}
-            className="cursor-pointer"
+            className="cursor-pointer transition-all duration-300"
             size={28}
           />
           <Plus className="cursor-pointer" size={28} />
@@ -42,7 +42,7 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
             onClick={() => {
               setToggle(false);
             }}
-            className="cursor-pointer"
+            className="cursor-pointer transition-transform duration-300"
             size={26}
           />
           <ul className="flex gap-8 text-lg font-normal">

@@ -3,7 +3,7 @@ import React, { type JSX } from 'react';
 const Footer = (): JSX.Element => {
   return (
     // <!-- Footer container -->
-    <footer className=" text-surface/75 bg-zinc-50 text-center shadow-[0px_-5px_15px_rgba(0,0,0,0.35)] dark:bg-neutral-700 dark:text-white/75 lg:text-left">
+    <footer className="bg-zinc-50 text-center shadow-[0px_-5px_15px_rgba(0,0,0,0.35)] dark:bg-neutral-700 dark:text-white/75 lg:text-left">
       <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
         <div className="me-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
