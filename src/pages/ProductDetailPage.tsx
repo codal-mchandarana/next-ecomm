@@ -5,12 +5,16 @@ import Image from 'next/image';
 import data from '@/data/data.json';
 
 const ProductDetailPage: React.FC = (): JSX.Element => {
-  const { id } = useParams();
+  const params = useParams<{ id?: string }>();
+  const id = params?.id ?? '';
   const productData = data.products.find((item) => String(item.id) === id);
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
 
-  const calculatePrice = (price: string, discount: string): number => {
-    const numPrice = Number(price.replace(/,/g, ''));
+  const calculatePrice = (
+    price: string | undefined,
+    discount: string | undefined,
+  ): number => {
+    const numPrice = Number(price?.replace(/,/g, ''));
     const numDiscount = Number(discount);
 
     const newPrice = numPrice - numPrice * (numDiscount / 100);
@@ -40,7 +44,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
                     }}
                     src={item.src}
                     alt="Thumbnail 1"
-                    className={`size-16 cursor-pointer rounded-md object-cover ${mainImageIndex!==index?'opacity-60':''} shadow-[rgba(0,0,0,0.35)_0px_5px_15px] transition duration-300 hover:opacity-100 sm:size-20`}
+                    className={`size-16 cursor-pointer rounded-md object-cover ${mainImageIndex !== index ? 'opacity-60' : ''} shadow-[rgba(0,0,0,0.35)_0px_5px_15px] transition duration-300 hover:opacity-100 sm:size-20`}
                     width={item.width}
                     height={item.height}
                   />
