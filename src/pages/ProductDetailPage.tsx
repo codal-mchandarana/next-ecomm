@@ -135,35 +135,70 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
               explicabo!
             </p>
 
-            <div className="mb-6">
-              <h3 className="mb-2 text-lg font-semibold">Tags:</h3>
-              <div className="relative w-32 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-                <select className="w-full cursor-pointer appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 pr-10 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400">
-                  {productData?.tags.map((item, index) => {
-                    return (
-                      <option key={index} value={item}>
-                        {item.toUpperCase()}
-                      </option>
-                    );
-                  })}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-gray-500"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19.5 8.25 12 15.75l-7.5-7.5"
-                    />
-                  </svg>
+            <div className="flex gap-16">
+              <div className="mb-6">
+                <h3 className="mb-2 text-lg font-semibold">Tags:</h3>
+                <div className="relative w-32 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+                  <select className="w-full cursor-pointer appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 pr-10 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400">
+                    {productData?.tags.map((item, index) => {
+                      return (
+                        <option key={index} value={item}>
+                          {item.toUpperCase()}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-5 text-gray-500"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 8.25 12 15.75l-7.5-7.5"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
+
+              {productData?.options[0]?.name === 'Size' && (
+                <div className="mb-6">
+                  <h3 className="mb-2 text-lg font-semibold">Sizes:</h3>
+                  <div className="relative w-32 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+                    <select className="w-full cursor-pointer appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 pr-10 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400">
+                      {productData.options[0].values.map((item, index) => {
+                        return (
+                          <option key={index} value={item}>
+                            {item.toUpperCase()}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-5 text-gray-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 8.25 12 15.75l-7.5-7.5"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mb-6 flex space-x-4">
