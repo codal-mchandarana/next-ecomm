@@ -10,7 +10,7 @@ const Filters: React.FC = (): JSX.Element => {
   const uniqueTags = [...new Set(items)];
 
   return (
-    <div className="mx-14 mb-6 flex justify-between">
+    <div className="mb-6 flex justify-between">
       <SearchBar />
       <div className="flex gap-8">
         <MultiDropDown Tags={uniqueTags}  />
