@@ -1,5 +1,7 @@
+'use client';
 import type { JSX } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/types';
 
 interface ProductCardInterface {
@@ -9,18 +11,24 @@ interface ProductCardInterface {
 const ProductCard: React.FC<ProductCardInterface> = ({
   product: { id, title, images, discount, price },
 }): JSX.Element => {
+  const router = useRouter();
+
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800">
+    <div
+      onClick={() => {
+        router.push(`product/${String(id)}`);
+      }}
+      aria-hidden="true"
+      className=" cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800"
+    >
       <div className="h-56 w-full">
-        <a href={`product/${String(id)}`}>
-          <Image
-            className="mx-auto h-full dark:hidden"
-            src={images[0]?.src || images[1]?.src}
-            width={images[0]?.width} // Set an appropriate width
-            height={images[0]?.height} // Set an appropriate height
-            alt={`Product - ${String(id)} image-1`}
-          />
-        </a>
+        <Image
+          className="mx-auto h-full dark:hidden"
+          src={images[0]?.src || images[1]?.src}
+          width={images[0]?.width} // Set an appropriate width
+          height={images[0]?.height} // Set an appropriate height
+          alt={`Product - ${String(id)} image-1`}
+        />
       </div>
       <div className="pt-6">
         <div className="mb-4 flex items-center justify-between gap-4">
