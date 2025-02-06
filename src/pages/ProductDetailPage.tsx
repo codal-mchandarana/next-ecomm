@@ -33,6 +33,8 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
               id="mainImage"
               width={productData?.images[0].width}
               height={productData?.images[0].height}
+              loading="eager"
+              fetchPriority="high"
             />
             <div className="flex justify-center gap-4 overflow-x-auto py-4">
               {productData?.images.map((item, index) => {

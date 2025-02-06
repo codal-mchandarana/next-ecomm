@@ -66,7 +66,7 @@ const CartItem: React.FC<{ imageUrl: string }> = ({
             </div>
 
             <div className="flex aspect-square w-10 items-center justify-center rounded border border-gray-300">
-              <Trash2 className="text-red-500" size={18} />
+              <Trash2 className="cursor-pointer text-red-500" size={18} />
             </div>
           </div>
         </div>
