@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardInterface> = ({
     >
       <div className="h-56 w-full">
         <Image
-          className="mx-auto h-full dark:hidden"
+          className="mx-auto h-full transition duration-150 hover:scale-105 dark:hidden"
           src={images[0]?.src || images[1]?.src}
           width={images[0]?.width} // Set an appropriate width
           height={images[0]?.height} // Set an appropriate height
@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardInterface> = ({
       </div>
       <div className="pt-6">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <span className="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300 me-2 rounded px-2.5 py-0.5 text-xs font-medium">
+          <span className="me-2 rounded px-2.5 py-0.5 text-xs font-bold text-red-500">
             {' '}
             Up to {discount}% off{' '}
           </span>
