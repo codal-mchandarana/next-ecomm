@@ -1,6 +1,6 @@
 /* eslint-disable camelcase -- needed to import font */
 import type { Metadata } from 'next';
-import { Roboto, Fira_Code } from 'next/font/google'; // Replacing invalid fonts
+import { Roboto, Inter } from 'next/font/google';
 import './globals.css';
 import type { JSX } from 'react';
 import Footer from '@/components/Custom/Footer';
@@ -11,11 +11,7 @@ const roboto = Roboto({
   weight: ['400', '700'], // Specify font weights (e.g., regular and bold)
 });
 
-const firaCode = Fira_Code({
-  variable: '--font-fira-code',
-  subsets: ['latin'],
-  weight: ['400'], // Specify font weights (e.g., regular)
-});
+const inter = Inter({ subsets: ['latin'], weight: ['300'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -27,7 +23,9 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({
 }): JSX.Element => {
   return (
     <html lang="en">
-      <body className={`h-screen bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat font-plex ${roboto.variable} ${firaCode.variable} antialiased`}>
+      <body
+        className={`${inter.className} h-screen bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat ${roboto.variable} antialiased`}
+      >
         {children}
         <Footer />
       </body>
