@@ -1,6 +1,20 @@
-import type { JSX } from 'react';
+import { type JSX } from 'react';
+import type { FilterProps } from '@/lib/types';
 
-const SearchBar: React.FC = (): JSX.Element => {
+const SearchBar: React.FC<FilterProps> = ({
+  filters,
+  handleFilters,
+  fieldvalue,
+  setFieldValue,
+}): JSX.Element => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ): void => {
+    const { value }: { value: string } = event.target;
+    setFieldValue(value);
+    handleFilters(value, filters.stock);
+  };
+
   return (
     <div className=" w-1/3 max-w-md rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       <div className="relative flex h-12 w-full items-center overflow-hidden rounded-lg bg-white focus-within:shadow-lg">
@@ -23,9 +37,12 @@ const SearchBar: React.FC = (): JSX.Element => {
 
         <input
           className="peer size-full pr-2 text-sm text-gray-700 outline-none"
+          name="search"
           type="text"
           id="search"
           placeholder="Enter Product name.."
+          value={fieldvalue}
+          onChange={handleChange}
         />
       </div>
     </div>

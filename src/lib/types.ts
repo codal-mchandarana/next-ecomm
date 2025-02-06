@@ -9,7 +9,7 @@ interface ProductImage {
   height: number;
 };
 
-export interface Product{
+export interface Product {
   id: number;
   title: string;
   handle: string;
@@ -22,4 +22,18 @@ export interface Product{
   product_type: string;
   tags: string[];
   images: ProductImage[];
+  available?: number;
 };
+
+export interface FilterInterface {
+  search: string;
+  tags: string;
+  stock: number;
+}
+
+export interface FilterProps {
+  filters: FilterInterface;
+  fieldvalue: string;
+  setFieldValue: React.Dispatch<React.SetStateAction<string>>;
+  handleFilters: (inputSearch: string, stock: number) => void;
+}

@@ -1,10 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState, type JSX } from 'react';
+import type { FilterProps } from '@/lib/types';
 
-const MultiDropDown: React.FC<{ Tags: string[]; SelectedTag?: string }> = ({
+interface MultiDropDownInterface extends FilterProps {
+  Tags: string[];
+  selectedTag?: string;
+}
+
+const MultiDropDown: React.FC<MultiDropDownInterface> = ({
   Tags,
-  SelectedTag,
+  selectedTag,
 }): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -33,11 +39,12 @@ const MultiDropDown: React.FC<{ Tags: string[]; SelectedTag?: string }> = ({
         data-target="dropdown-with-check"
         onClick={() => {
           setIsOpen((prev) => !prev);
+        
         }}
         className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-center text-sm font-semibold text-black transition-all duration-500 hover:bg-white "
       >
-        {SelectedTag ? (
-          SelectedTag
+        {selectedTag ? (
+          selectedTag
         ) : (
           <>
             Select Tags

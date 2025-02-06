@@ -1,27 +1,34 @@
 'use client';
 import { useEffect, useRef, useState, type JSX } from 'react';
+import type { FilterProps } from '@/lib/types';
 
-const DropDown: React.FC = (): JSX.Element => {
+const DropDown: React.FC<FilterProps> = ({
+  filters,
+  handleFilters,
+  fieldvalue,
+  setFieldValue,
+}): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const dropdown = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent):void => {
+  const handleClickOutside = (event: MouseEvent): void => {
     if (dropdown.current && !dropdown.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     };
   });
 
   return (
     <div
       ref={dropdown}
-      className="relative inline-flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"
+      className="relative z-[9] inline-flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"
     >
       <button
         type="button"
@@ -32,7 +39,7 @@ const DropDown: React.FC = (): JSX.Element => {
         className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-center text-sm font-semibold text-black transition-all duration-500 hover:bg-white "
       >
         {' '}
-        Select{' '}
+        {fieldvalue}{' '}
         <svg
           className="dropdown-open:rotate-180 size-2.5 text-black"
           width="16"
@@ -51,21 +58,37 @@ const DropDown: React.FC = (): JSX.Element => {
       </button>
       <div
         id="dropdown-default"
-        className={`absolute top-full mt-2 w-72 rounded-xl bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] ${!isOpen ? 'hidden' : ''}`}
+        className={`absolute top-full mt-2 w-40 rounded-xl bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] ${!isOpen ? 'hidden' : ''}`}
         aria-labelledby="dropdown-default"
       >
         <ul className="py-2">
           <li>
-            <span className="block cursor-pointer px-6 py-2 font-medium text-gray-900 hover:bg-gray-100">
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false);
+                setFieldValue('In Stock');
+                handleFilters(filters.search, 1);
+              }}
+              className="block w-full cursor-pointer px-6 py-2 text-left font-medium text-gray-900 hover:bg-gray-100"
+            >
               {' '}
               In Stock{' '}
-            </span>
+            </button>
           </li>
           <li>
-            <span className="block cursor-pointer px-6 py-2 font-medium text-gray-900 hover:bg-gray-100">
+            <button
+              type="button"
+              className="block w-full cursor-pointer px-6 py-2 text-left font-medium text-gray-900 hover:bg-gray-100"
+              onClick={() => {
+                setIsOpen(false);
+                setFieldValue('Out of Stock');
+                handleFilters(filters.search, 2);
+              }}
+            >
               {' '}
               Out of Stock{' '}
-            </span>
+            </button>
           </li>
         </ul>
       </div>
