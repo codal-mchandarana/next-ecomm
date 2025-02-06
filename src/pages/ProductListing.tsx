@@ -12,7 +12,9 @@ const ProductListing: React.FC<{ data: Product[]; selectedTag?: string }> = ({
   const [products, setProducts] = useState<Product[]>(data);
 
   return (
-    <section className="mt-12 h-screen py-8 antialiased dark:bg-gray-900 md:py-12">
+    <section
+      className={`${products.length <= 0 ? 'h-screen' : ''} mt-12 py-8 antialiased dark:bg-gray-900 md:py-12`}
+    >
       <div className="mx-auto h-full px-4 xl:max-w-screen-xl 2xl:max-w-screen-xxl 2xl:px-0">
         <Filters selectedTag={selectedTag} setProducts={setProducts} />
         {products.length > 0 ? (
@@ -25,7 +27,7 @@ const ProductListing: React.FC<{ data: Product[]; selectedTag?: string }> = ({
         ) : (
           <div className=" flex h-full items-center justify-center">
             <div className="mr-3 text-2xl font-bold">No Product To Display</div>
-            <Frown className='text-red-600' size={26} />
+            <Frown className="text-red-600" size={26} />
           </div>
         )}
       </div>
