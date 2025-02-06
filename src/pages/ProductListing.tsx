@@ -4,7 +4,7 @@ import type { Product } from '@/lib/types';
 import Filters from '@/components/Custom/Filters';
 
 const ProductListing: React.FC<{ data: Product[]; selectedTag?: string }> = ({
-  data,
+  data = [],
   selectedTag,
 }): JSX.Element => {
   return (
