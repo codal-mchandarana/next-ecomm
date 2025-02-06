@@ -22,7 +22,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="flex h-screen items-center">
+    <div className="mt-12 flex h-screen items-center">
       <div className="container mx-auto px-4 py-8">
         <div className="mx-4 my-8 flex items-center">
           <div className="flex w-full flex-col items-center px-4 md:w-1/2">
