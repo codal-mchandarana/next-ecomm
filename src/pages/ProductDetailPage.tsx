@@ -1,12 +1,15 @@
 'use client';
 import { useParams } from 'next/navigation';
-import { useState, type JSX } from 'react';
+import { useContext, useState, type JSX } from 'react';
 import Image from 'next/image';
 import data from '@/data/data.json';
 import { calculatePrice } from '@/lib/utility';
+import { CartContext } from '@/Context/CartContextProvider';
+import { Product } from '@/lib/types';
 
 const ProductDetailPage: React.FC = (): JSX.Element => {
   const params = useParams<{ id?: string }>();
+  const { AddToCart } = useContext(CartContext);
   const id = params?.id ?? '';
   const productData = data.products.find((item) => String(item.id) === id);
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
@@ -198,7 +201,13 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
             </div>
 
             <div className="mb-6 flex space-x-4">
-              <button type='button' className="flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <button
+                onClick={() => {
+                  AddToCart(productData as Product);
+                }}
+                type="button"
+                className="flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-2 text-white transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:scale-95"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -215,7 +224,10 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
                 </svg>
                 Add to Cart
               </button>
-              <button type='button' className="flex items-center gap-2 rounded-md  bg-gray-200 px-6 py-2 text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+              <button
+                type="button"
+                className="flex items-center gap-2 rounded-md  bg-gray-200 px-6 py-2 text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -4,6 +4,7 @@ import { Roboto, Inter } from 'next/font/google';
 import './globals.css';
 import type { JSX } from 'react';
 import Footer from '@/components/Custom/Footer';
+import CartContextProvider from '@/Context/CartContextProvider';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -26,8 +27,12 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({
       <body
         className={`${inter.className} h-screen bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat ${roboto.variable} antialiased`}
       >
-        {children}
-        <Footer />
+        <CartContextProvider>
+          <>
+            {children}
+            <Footer />
+          </>
+        </CartContextProvider>
       </body>
     </html>
   );

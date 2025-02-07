@@ -1,30 +1,34 @@
 'use client';
-import type { JSX } from 'react';
+import { useContext, type JSX } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { ShoppingCart } from 'lucide-react';
 import type { Product } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { calculatePrice } from '@/lib/utility';
+import { CartContext } from '@/Context/CartContextProvider';
 
 interface ProductCardInterface {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardInterface> = ({
-  product: { id, title, images, discount, price },
+  product,
 }): JSX.Element => {
   const router = useRouter();
+  const { AddToCart } = useContext(CartContext);
+  const { id, title, images, discount, price } = product;
 
   return (
     <div
-      onClick={() => {
-        router.push(`product/${String(id)}`);
-      }}
       aria-hidden="true"
-      className=" cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800"
+      className="flex cursor-pointer flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800"
     >
       <div className="h-56 w-full">
         <Image
+          onClick={() => {
+            router.push(`product/${String(id)}`);
+          }}
           className="mx-auto h-full transition duration-150 hover:scale-105 dark:hidden"
           src={images[0]?.src || images[1]?.src}
           width={images[0]?.width} // Set an appropriate width
@@ -32,6 +36,7 @@ const ProductCard: React.FC<ProductCardInterface> = ({
           alt={`Product - ${String(id)} image-1`}
         />
       </div>
+
       <div className="pt-6">
         <div className="mb-4 flex items-center justify-between gap-4">
           <Badge variant="destructive" className="">
@@ -221,39 +226,26 @@ const ProductCard: React.FC<ProductCardInterface> = ({
           </li>
         </ul>
 
-        <div className="mt-4 flex items-center justify-between gap-4">
+        <div className="mb-6 mt-4 flex items-center gap-4">
           <span className="text-2xl font-bold text-red-500">
             ${calculatePrice(price, discount).toLocaleString()}
           </span>
           <p className="text-2xl font-extrabold leading-tight text-gray-900 line-through dark:text-white">
             ${price}
           </p>
-
-          <button
-            type="button"
-            className="inline-flex items-center rounded-lg px-5 py-2.5 text-sm  font-medium text-white focus:outline-none focus:ring-4"
-          >
-            <svg
-              className="-ms-2 me-2 size-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-              />
-            </svg>
-            Add to cart
-          </button>
         </div>
       </div>
+
+      <button
+        type="button"
+        className="group mt-auto flex items-center gap-2 self-start rounded-lg bg-black px-6 py-3 text-white transition-all hover:bg-black/90 active:scale-95"
+        onClick={() => {
+          AddToCart(product);
+        }}
+      >
+        <ShoppingCart className="size-5" />
+        <span className="font-medium">Add to Cart</span>
+      </button>
     </div>
   );
 };

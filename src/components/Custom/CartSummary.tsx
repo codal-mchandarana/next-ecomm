@@ -1,6 +1,8 @@
-import type { JSX } from 'react';
+import { useContext, type JSX } from 'react';
+import { CartContext } from '@/Context/CartContextProvider';
 
 const CartSummary: React.FC = (): JSX.Element => {
+  const { TotalPrice } = useContext(CartContext);
   return (
     <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
       <p className="text-xl font-semibold text-red-500 dark:text-white">
@@ -14,7 +16,7 @@ const CartSummary: React.FC = (): JSX.Element => {
                 Subtotal:
               </dt>
               <dd className="text-base font-bold text-gray-900 dark:text-white">
-                $7,592.00
+                ${TotalPrice.toLocaleString()}
               </dd>
             </dl>
 
@@ -22,7 +24,7 @@ const CartSummary: React.FC = (): JSX.Element => {
               <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
                 Delivery:
               </dt>
-              <dd className="text-base  font-bold">-$299.00</dd>
+              <dd className="text-base  font-bold">-$0</dd>
             </dl>
 
             <dl className="flex items-center justify-between gap-4">
@@ -30,7 +32,7 @@ const CartSummary: React.FC = (): JSX.Element => {
                 Tax:
               </dt>
               <dd className="text-base  font-bold  text-gray-900 dark:text-white">
-                $799
+                $0
               </dd>
             </dl>
           </div>
@@ -40,13 +42,13 @@ const CartSummary: React.FC = (): JSX.Element => {
               Total:
             </dt>
             <dd className="text-base font-bold text-gray-900 dark:text-white">
-              $8,191.00
+              ${TotalPrice.toLocaleString()}
             </dd>
           </dl>
         </div>
       </div>
 
-      <div className='w-full'>
+      <div className="w-full">
         <button
           type="button"
           className="mb-2 me-2 w-full rounded-lg bg-[#1F7F66] px-5 py-2.5 text-sm font-bold text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"

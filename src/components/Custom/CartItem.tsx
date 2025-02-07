@@ -1,24 +1,22 @@
+'use client';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import type { JSX } from 'react';
+import { useContext, type JSX } from 'react';
+import { calculatePrice } from '@/lib/utility';
+import { type Product } from '@/lib/types';
+import { CartContext } from '@/Context/CartContextProvider';
 
-const CartItem: React.FC<{ imageUrl: string }> = ({
-  imageUrl,
+const CartItem: React.FC<{ cartItem: Product }> = ({
+  cartItem,
 }): JSX.Element => {
+  const { DeleteCartItems } = useContext(CartContext);
   return (
     <div className="rounded-lg bg-white p-4 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800 md:p-6">
       <div className="w-3/4 space-y-4 md:flex md:items-center md:gap-12 md:space-y-0">
         <a href="#!" className="shrink-0 md:order-1">
           <Image
             className="size-52 dark:hidden"
-            src={imageUrl}
-            alt="imac image"
-            width={500}
-            height={500}
-          />
-          <Image
-            className="hidden size-20 dark:block"
-            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+            src={cartItem.images[0].src}
             alt="imac image"
             width={500}
             height={500}
@@ -29,7 +27,7 @@ const CartItem: React.FC<{ imageUrl: string }> = ({
           <div className="flex justify-between">
             <div>
               <div className="mb-6 text-xl font-bold">
-                <h1>Man T-shirt</h1>
+                <h1>{cartItem.title}</h1>
               </div>
 
               <div className="flex flex-col gap-2 text-sm">
@@ -47,7 +45,18 @@ const CartItem: React.FC<{ imageUrl: string }> = ({
                 </div>
               </div>
             </div>
-            <div className="text-lg font-extrabold text-[#1F7F66]">$2,000</div>
+            <div>
+              <div className="text-lg font-extrabold text-[#1F7F66]">
+                $
+                {calculatePrice(
+                  cartItem.price,
+                  cartItem.discount,
+                ).toLocaleString()}
+              </div>
+              <div className="text-lg font-extrabold text-gray-900 line-through">
+                ${cartItem.price}
+              </div>
+            </div>
           </div>
 
           <hr className="my-12 h-0.5 border-t-0 bg-neutral-200 dark:bg-white/10" />
@@ -58,7 +67,7 @@ const CartItem: React.FC<{ imageUrl: string }> = ({
                 <Minus size={14} />
               </div>
               <div className="flex h-[2.1rem] w-[14%] items-center justify-center border-y border-gray-300 text-center outline-none">
-                <span className="text-lg">1</span>
+                <span className="text-lg">{cartItem.qty}</span>
               </div>
               <div className="flex size-10 h-[2.1rem] cursor-pointer items-center justify-center rounded-r border border-gray-300 font-bold">
                 <Plus size={14} />
@@ -66,7 +75,13 @@ const CartItem: React.FC<{ imageUrl: string }> = ({
             </div>
 
             <div className="flex aspect-square w-10 items-center justify-center rounded border border-gray-300">
-              <Trash2 className="cursor-pointer text-red-500" size={18} />
+              <Trash2
+                onClick={() => {
+                  DeleteCartItems(cartItem.id);
+                }}
+                className="cursor-pointer text-red-500"
+                size={18}
+              />
             </div>
           </div>
         </div>

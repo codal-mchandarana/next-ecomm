@@ -13,6 +13,7 @@ export interface Product {
   id: number;
   title: string;
   handle: string;
+  qty?: number;
   published_at: string;
   created_at: string;
   updated_at: string;
@@ -51,4 +52,11 @@ export interface TagFilterProps {
     inputTags: string[],
     stock: number,
   ) => void;
+}
+
+export interface CartItems {
+  carts: Product[];
+  AddToCart: (item: Product) => void;
+  DeleteCartItems: (id: number) => void;
+  TotalPrice: number;
 }
