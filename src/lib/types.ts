@@ -7,7 +7,7 @@ interface ProductImage {
   src: string;
   width: number;
   height: number;
-};
+}
 
 export interface Product {
   id: number;
@@ -23,11 +23,11 @@ export interface Product {
   tags: string[];
   images: ProductImage[];
   available?: number;
-};
+}
 
 export interface FilterInterface {
   search: string;
-  tags: string;
+  tags: string[];
   stock: number;
 }
 
@@ -35,5 +35,19 @@ export interface FilterProps {
   filters: FilterInterface;
   fieldvalue: string;
   setFieldValue: React.Dispatch<React.SetStateAction<string>>;
-  handleFilters: (inputSearch: string, stock: number) => void;
+  handleFilters: (
+    inputSearch: string,
+    inputTags: string[],
+    stock: number,
+  ) => void;
+}
+export interface TagFilterProps {
+  filters: FilterInterface;
+  fieldvalue: string[];
+  setFieldValue: React.Dispatch<React.SetStateAction<string[]>>;
+  handleFilters: (
+    inputSearch: string,
+    inputTags: string[],
+    stock: number,
+  ) => void;
 }

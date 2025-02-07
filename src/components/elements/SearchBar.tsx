@@ -12,7 +12,7 @@ const SearchBar: React.FC<FilterProps> = ({
   ): void => {
     const { value }: { value: string } = event.target;
     setFieldValue(value);
-    handleFilters(value, filters.stock);
+    handleFilters(value, filters.tags, filters.stock);
   };
 
   return (

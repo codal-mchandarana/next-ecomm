@@ -18,18 +18,27 @@ const Filters: React.FC<PropsInterface> = ({
 }): JSX.Element => {
   const [filters, setFilters] = useState<FilterInterface>({
     search: '',
-    tags: '',
+    tags: [],
     stock: 0,
   });
   const [stockVal, setStockVal] = useState<string>('Select');
   const [searchVal, setSearchVal] = useState<string>('');
-  const [tagVal, setTagVal] = useState<string>('');
+  const [tagVal, setTagVal] = useState<string[]>([]);
 
-  const handleFilters = (inputText: string, stockValue: number): void => {
+  const handleFilters = (
+    inputText: string,
+    inputTags: string[],
+    stockValue: number,
+  ): void => {
     const filteredProducts = data.products.filter((item) => {
       const title: string = item.title.toLowerCase();
       const matchesSearch =
         inputText !== '' ? title.includes(inputText.toLowerCase()) : true;
+
+      const matchesTags = inputTags.every((inputTag) =>
+        item.tags.includes(inputTag),
+      );
+
       const { available } = item;
 
       let matchesStock = true;
@@ -39,12 +48,12 @@ const Filters: React.FC<PropsInterface> = ({
         matchesStock = available === 0;
       }
 
-      return matchesSearch && matchesStock;
+      return matchesSearch && matchesTags && matchesStock;
     });
 
     setFilters({
       search: inputText,
-      tags: '',
+      tags: inputTags,
       stock: stockValue,
     });
 
@@ -81,12 +90,13 @@ const Filters: React.FC<PropsInterface> = ({
           onClick={() => {
             setStockVal('Select');
             setSearchVal('');
+            setTagVal([]);
             setFilters({
               search: '',
-              tags: '',
+              tags: [],
               stock: 0,
             });
-            handleFilters('', 0);
+            handleFilters('', [], 0);
           }}
           className="h-full rounded-none bg-white font-semibold text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] hover:bg-gray-100"
         >
