@@ -9,7 +9,7 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
 
   if (back)
     return (
-      <div className="fixed top-0 flex h-14 w-full items-center justify-between bg-white shadow-lg">
+      <div className="fixed top-0 z-10 flex h-14 w-full items-center justify-between bg-white shadow-lg">
         <Link href="/">
           <ChevronLeft
             onClick={() => {

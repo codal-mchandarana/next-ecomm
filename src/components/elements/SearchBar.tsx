@@ -6,13 +6,15 @@ const SearchBar: React.FC<FilterProps> = ({
   handleFilters,
   fieldvalue,
   setFieldValue,
+  selectedTag,
 }): JSX.Element => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ): void => {
     const { value }: { value: string } = event.target;
     setFieldValue(value);
-    handleFilters(value, filters.tags, filters.stock);
+    const tags = selectedTag ? [selectedTag] : filters.tags;
+    handleFilters(value, tags, filters.stock);
   };
 
   return (

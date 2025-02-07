@@ -35,6 +35,7 @@ export interface FilterProps {
   filters: FilterInterface;
   fieldvalue: string;
   setFieldValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedTag?: string;
   handleFilters: (
     inputSearch: string,
     inputTags: string[],

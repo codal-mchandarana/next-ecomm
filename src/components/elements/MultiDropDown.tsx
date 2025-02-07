@@ -71,73 +71,75 @@ const MultiDropDown: React.FC<MultiDropDownInterface> = ({
           </>
         )}
       </button>
-      <div
-        id="dropdown-with-check"
-        className={`absolute top-full mt-2 w-72 rounded-xl bg-white p-6 shadow-lg ${!isOpen ? 'hidden' : ''}`}
-        aria-labelledby="dropdown-with-check"
-      >
-        <div className="relative mb-4">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.75 15.75L14.25 14.25M15 8.25C15 11.9779 11.9779 15 8.25 15C4.52208 15 1.5 11.9779 1.5 8.25C1.5 4.52208 4.52208 1.5 8.25 1.5C11.9779 1.5 15 4.52208 15 8.25Z"
-                stroke="#6B7280"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+      {selectedTag ? null : (
+        <div
+          id="dropdown-with-check"
+          className={`absolute top-full mt-2 w-72 rounded-xl bg-white p-6 shadow-lg ${!isOpen ? 'hidden' : ''}`}
+          aria-labelledby="dropdown-with-check"
+        >
+          <div className="relative mb-4">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.75 15.75L14.25 14.25M15 8.25C15 11.9779 11.9779 15 8.25 15C4.52208 15 1.5 11.9779 1.5 8.25C1.5 4.52208 4.52208 1.5 8.25 1.5C11.9779 1.5 15 4.52208 15 8.25Z"
+                  stroke="#6B7280"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="input-group-search"
+              className="block w-full rounded-full border border-gray-300 px-4 py-2 pl-10 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none "
+              placeholder="Search in list.."
+            />
           </div>
-          <input
-            type="text"
-            id="input-group-search"
-            className="block w-full rounded-full border border-gray-300 px-4 py-2 pl-10 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none "
-            placeholder="Search in list.."
-          />
+          <ul className="space-y-4">
+            {Tags.map((tag: string, index: number) => {
+              return (
+                <li key={index}>
+                  <div className="flex items-center">
+                    <input
+                      id="checkbox-example-1"
+                      type="checkbox"
+                      checked={fieldvalue.includes(tag)}
+                      value=""
+                      onChange={(event) => {
+                        const isChecked: boolean = event.target.checked;
+
+                        let tagsArray: string[] = fieldvalue;
+                        if (isChecked) {
+                          tagsArray.push(tag);
+                        } else {
+                          tagsArray = fieldvalue.filter((t) => t !== tag);
+                        }
+
+                        setFieldValue(tagsArray);
+                        handleFilters(filters.search, tagsArray, filters.stock);
+                      }}
+                      className="mr-2 size-5 cursor-pointer appearance-none rounded-md border  border-gray-300 checked:border-indigo-500 checked:bg-indigo-100 checked:bg-center checked:bg-no-repeat hover:border-indigo-500 hover:bg-indigo-100"
+                    />
+                    <label
+                      htmlFor="checkbox-example-1"
+                      className="cursor-pointer text-base font-medium text-gray-900"
+                    >
+                      {tag}
+                    </label>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <ul className="space-y-4">
-          {Tags.map((tag: string, index: number) => {
-            return (
-              <li key={index}>
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-example-1"
-                    type="checkbox"
-                    checked={fieldvalue.includes(tag)}
-                    value=""
-                    onChange={(event) => {
-                      const isChecked: boolean = event.target.checked;
-
-                      let tagsArray: string[] = fieldvalue;
-                      if (isChecked) {
-                        tagsArray.push(tag);
-                      } else {
-                        tagsArray = fieldvalue.filter((t) => t !== tag);
-                      }
-
-                      setFieldValue(tagsArray);
-                      handleFilters(filters.search, tagsArray, filters.stock);
-                    }}
-                    className="mr-2 size-5 cursor-pointer appearance-none rounded-md border  border-gray-300 checked:border-indigo-500 checked:bg-indigo-100 checked:bg-center checked:bg-no-repeat hover:border-indigo-500 hover:bg-indigo-100"
-                  />
-                  <label
-                    htmlFor="checkbox-example-1"
-                    className="cursor-pointer text-base font-medium text-gray-900"
-                  >
-                    {tag}
-                  </label>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      )}
     </div>
   );
 };

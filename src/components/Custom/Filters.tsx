@@ -1,5 +1,6 @@
 'use client';
 import { useState, type JSX } from 'react';
+import { useRouter } from 'next/navigation';
 import data from '@/data/data.json';
 import type { FilterInterface, Product } from '@/lib/types';
 import SearchBar from '../elements/SearchBar';
@@ -24,6 +25,7 @@ const Filters: React.FC<PropsInterface> = ({
   const [stockVal, setStockVal] = useState<string>('Select');
   const [searchVal, setSearchVal] = useState<string>('');
   const [tagVal, setTagVal] = useState<string[]>([]);
+  const router = useRouter();
 
   const handleFilters = (
     inputText: string,
@@ -67,6 +69,7 @@ const Filters: React.FC<PropsInterface> = ({
     <div className="mb-6 flex justify-between">
       <SearchBar
         filters={filters}
+        selectedTag={selectedTag}
         handleFilters={handleFilters}
         fieldvalue={searchVal}
         setFieldValue={setSearchVal}
@@ -82,6 +85,7 @@ const Filters: React.FC<PropsInterface> = ({
         />
         <DropDown
           filters={filters}
+          selectedTag={selectedTag}
           handleFilters={handleFilters}
           fieldvalue={stockVal}
           setFieldValue={setStockVal}
@@ -97,6 +101,7 @@ const Filters: React.FC<PropsInterface> = ({
               stock: 0,
             });
             handleFilters('', [], 0);
+            router.push('/');
           }}
           className="h-full rounded-none bg-white font-semibold text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] hover:bg-gray-100"
         >

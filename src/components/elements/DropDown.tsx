@@ -7,6 +7,7 @@ const DropDown: React.FC<FilterProps> = ({
   handleFilters,
   fieldvalue,
   setFieldValue,
+  selectedTag,
 }): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -68,7 +69,8 @@ const DropDown: React.FC<FilterProps> = ({
               onClick={() => {
                 setIsOpen(false);
                 setFieldValue('In Stock');
-                handleFilters(filters.search,filters.tags, 1);
+                const tags = selectedTag ? [selectedTag] : filters.tags;
+                handleFilters(filters.search, tags, 1);
               }}
               className="block w-full cursor-pointer px-6 py-2 text-left font-medium text-gray-900 hover:bg-gray-100"
             >
@@ -83,7 +85,8 @@ const DropDown: React.FC<FilterProps> = ({
               onClick={() => {
                 setIsOpen(false);
                 setFieldValue('Out of Stock');
-                handleFilters(filters.search,filters.tags, 2);
+                const tags = selectedTag ? [selectedTag] : filters.tags;
+                handleFilters(filters.search, tags, 2);
               }}
             >
               {' '}
