@@ -3,23 +3,13 @@ import { useParams } from 'next/navigation';
 import { useState, type JSX } from 'react';
 import Image from 'next/image';
 import data from '@/data/data.json';
+import { calculatePrice } from '@/lib/utility';
 
 const ProductDetailPage: React.FC = (): JSX.Element => {
   const params = useParams<{ id?: string }>();
   const id = params?.id ?? '';
   const productData = data.products.find((item) => String(item.id) === id);
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
-
-  const calculatePrice = (
-    price: string | undefined,
-    discount: string | undefined,
-  ): number => {
-    const numPrice = Number(price?.replace(/,/g, ''));
-    const numDiscount = Number(discount);
-
-    const newPrice = numPrice - numPrice * (numDiscount / 100);
-    return newPrice;
-  };
 
   return (
     <div className="mt-12 flex h-screen items-center">
@@ -60,7 +50,11 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
             <p className="mb-4 text-gray-600">SKU: {productData?.id}</p>
             <div className="mb-4">
               <span className="mr-2 text-2xl font-bold text-red-500">
-                ${calculatePrice(productData?.price, productData?.discount)}
+                $
+                {calculatePrice(
+                  productData?.price,
+                  productData?.discount,
+                ).toLocaleString()}
               </span>
               <span className="text-gray-500 line-through">
                 ${productData?.price}
@@ -204,7 +198,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
             </div>
 
             <div className="mb-6 flex space-x-4">
-              <button className="flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <button type='button' className="flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -221,7 +215,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
                 </svg>
                 Add to Cart
               </button>
-              <button className="flex items-center gap-2 rounded-md  bg-gray-200 px-6 py-2 text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+              <button type='button' className="flex items-center gap-2 rounded-md  bg-gray-200 px-6 py-2 text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -3,6 +3,8 @@ import type { JSX } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/types';
+import { Badge } from '@/components/ui/badge';
+import { calculatePrice } from '@/lib/utility';
 
 interface ProductCardInterface {
   product: Product;
@@ -32,10 +34,9 @@ const ProductCard: React.FC<ProductCardInterface> = ({
       </div>
       <div className="pt-6">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <span className="me-2 rounded px-2.5 py-0.5 text-xs font-bold text-red-500">
-            {' '}
-            Up to {discount}% off{' '}
-          </span>
+          <Badge variant="destructive" className="">
+            {discount}% off
+          </Badge>
 
           <div className="flex items-center justify-end gap-1">
             <button
@@ -68,11 +69,11 @@ const ProductCard: React.FC<ProductCardInterface> = ({
             <div
               id="tooltip-quick-look"
               role="tooltip"
-              className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+              className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
               data-popper-placement="top"
             >
               Quick look
-              <div className="tooltip-arrow" data-popper-arrow="" />
+              <div data-popper-arrow="" />
             </div>
 
             <button
@@ -100,11 +101,11 @@ const ProductCard: React.FC<ProductCardInterface> = ({
             <div
               id="tooltip-add-to-favorites"
               role="tooltip"
-              className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+              className="invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
               data-popper-placement="top"
             >
               Add to favorites
-              <div className="tooltip-arrow" data-popper-arrow="" />
+              <div data-popper-arrow="" />
             </div>
           </div>
         </div>
@@ -221,13 +222,16 @@ const ProductCard: React.FC<ProductCardInterface> = ({
         </ul>
 
         <div className="mt-4 flex items-center justify-between gap-4">
-          <p className="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
+          <span className="text-2xl font-bold text-red-500">
+            ${calculatePrice(price, discount).toLocaleString()}
+          </span>
+          <p className="text-2xl font-extrabold leading-tight text-gray-900 line-through dark:text-white">
             ${price}
           </p>
 
           <button
             type="button"
-            className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 inline-flex items-center rounded-lg px-5 py-2.5 text-sm  font-medium text-white focus:outline-none focus:ring-4"
+            className="inline-flex items-center rounded-lg px-5 py-2.5 text-sm  font-medium text-white focus:outline-none focus:ring-4"
           >
             <svg
               className="-ms-2 me-2 size-5"
