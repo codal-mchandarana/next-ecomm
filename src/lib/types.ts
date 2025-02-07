@@ -58,5 +58,7 @@ export interface CartItems {
   carts: Product[];
   AddToCart: (item: Product) => void;
   DeleteCartItems: (id: number) => void;
+  IncrementCartItemQuantity:(id:number)=>void;
+  DecrementCartItemQuantity:(id:number)=>void;
   TotalPrice: number;
 }

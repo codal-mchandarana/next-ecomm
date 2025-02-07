@@ -7,6 +7,8 @@ export const CartContext = createContext<CartItems>({
   carts: [],
   AddToCart: () => {},
   DeleteCartItems: () => {},
+  IncrementCartItemQuantity: () => {},
+  DecrementCartItemQuantity: () => {},
   TotalPrice: 0,
 });
 
@@ -34,6 +36,7 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
     if (item.discount) {
       price = calculatePrice(item.price, item.discount);
     }
+    console.log("Price here ",price);
     setTotalPrice((prev) => prev + price);
   };
 
@@ -43,9 +46,6 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
 
     setItems((prevItems) => prevItems.filter((val) => val.id !== id));
 
-    let cartArry = items;
-    cartArry = cartArry.filter((val) => val.id !== id);
-
     let price: number = Number(item?.price?.replace(/,/g, ''));
     if (item?.discount) {
       price = calculatePrice(item.price, item.discount);
@@ -53,10 +53,52 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
     setTotalPrice((prev) => prev - price * (item?.qty ?? 1));
   };
 
+  const DecrementCartItemQuantity = (id: number): void => {
+    const cartItemIndex = items.findIndex((product) => product.id === id);
+
+    if (cartItemIndex !== -1) {
+      const quantity = items[cartItemIndex].qty || 0;
+      if (quantity > 1) {
+        items[cartItemIndex] = { ...items[cartItemIndex], qty: quantity - 1 };
+        setItems(items);
+      } else {
+        setItems((prevItems) => prevItems.filter((val) => val.id !== id));
+      }
+
+      const item: Product = items[cartItemIndex];
+
+      let price: number = parseInt(item.price);
+      if (item.discount) {
+        price = calculatePrice(item.price, item.discount);
+      }
+      setTotalPrice((prev) => prev - price);
+    }
+  };
+
+  const IncrementCartItemQuantity = (id: number): void => {
+    const cartItemIndex = items.findIndex((product) => product.id === id);
+
+    if (cartItemIndex !== -1) {
+      const quantity = items[cartItemIndex].qty || 0;
+      items[cartItemIndex] = { ...items[cartItemIndex], qty: quantity + 1 };
+      setItems(items);
+
+      const item: Product = items[cartItemIndex];
+
+      let price: number = parseInt(item.price);
+      if (item.discount) {
+        price = calculatePrice(item.price, item.discount);
+      }
+      setTotalPrice((prev) => prev + price);
+    }
+  };
+
   const ctxValue: CartItems = {
     carts: items,
     AddToCart,
     DeleteCartItems,
+    IncrementCartItemQuantity,
+    DecrementCartItemQuantity,
     TotalPrice: totalPrice,
   };
 

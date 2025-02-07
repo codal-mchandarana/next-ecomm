@@ -9,7 +9,11 @@ import { CartContext } from '@/Context/CartContextProvider';
 const CartItem: React.FC<{ cartItem: Product }> = ({
   cartItem,
 }): JSX.Element => {
-  const { DeleteCartItems } = useContext(CartContext);
+  const {
+    DeleteCartItems,
+    IncrementCartItemQuantity,
+    DecrementCartItemQuantity,
+  } = useContext(CartContext);
   return (
     <div className="rounded-lg bg-white p-4 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800 md:p-6">
       <div className="w-3/4 space-y-4 md:flex md:items-center md:gap-12 md:space-y-0">
@@ -63,15 +67,27 @@ const CartItem: React.FC<{ cartItem: Product }> = ({
 
           <div className="flex justify-between">
             <div className="flex w-full  items-center">
-              <div className="flex size-10 h-[2.1rem] cursor-pointer items-center justify-center rounded-l border border-gray-300 font-bold">
+              <button
+                type="button"
+                onClick={() => {
+                  DecrementCartItemQuantity(cartItem.id);
+                }}
+                className="flex size-10 h-[2.1rem] cursor-pointer items-center justify-center rounded-l border border-gray-300 font-bold transition-all duration-150 ease-in-out active:scale-95"
+              >
                 <Minus size={14} />
-              </div>
+              </button>
               <div className="flex h-[2.1rem] w-[14%] items-center justify-center border-y border-gray-300 text-center outline-none">
                 <span className="text-lg">{cartItem.qty}</span>
               </div>
-              <div className="flex size-10 h-[2.1rem] cursor-pointer items-center justify-center rounded-r border border-gray-300 font-bold">
+              <button
+                type="button"
+                onClick={() => {
+                  IncrementCartItemQuantity(cartItem.id);
+                }}
+                className="flex size-10 h-[2.1rem] cursor-pointer items-center justify-center rounded-r border border-gray-300 font-bold transition-all duration-150 ease-in-out active:scale-95"
+              >
                 <Plus size={14} />
-              </div>
+              </button>
             </div>
 
             <div className="flex aspect-square w-10 items-center justify-center rounded border border-gray-300">
@@ -79,7 +95,7 @@ const CartItem: React.FC<{ cartItem: Product }> = ({
                 onClick={() => {
                   DeleteCartItems(cartItem.id);
                 }}
-                className="cursor-pointer text-red-500"
+                className="cursor-pointer text-red-500 transition-all duration-150 ease-in-out active:scale-95"
                 size={18}
               />
             </div>

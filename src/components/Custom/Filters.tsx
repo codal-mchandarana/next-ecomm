@@ -103,7 +103,7 @@ const Filters: React.FC<PropsInterface> = ({
             handleFilters('', [], 0);
             router.push('/');
           }}
-          className="h-full rounded-none bg-white font-semibold text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] hover:bg-gray-100"
+          className="h-full rounded-none bg-white font-semibold text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-150 ease-in-out hover:bg-gray-100 active:scale-95"
         >
           Clear
         </Button>

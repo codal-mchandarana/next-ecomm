@@ -4,7 +4,7 @@ import { CartContext } from '@/Context/CartContextProvider';
 const CartSummary: React.FC = (): JSX.Element => {
   const { TotalPrice } = useContext(CartContext);
   return (
-    <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+    <div className="sticky top-16 mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
       <p className="text-xl font-semibold text-red-500 dark:text-white">
         Order summary
       </p>

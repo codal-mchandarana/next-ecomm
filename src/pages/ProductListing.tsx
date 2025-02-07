@@ -26,8 +26,8 @@ const ProductListing: React.FC<{ data: Product[]; selectedTag?: string }> = ({
           </div>
         ) : (
           <div className=" flex h-full items-center justify-center">
-            <div className="mr-3 text-2xl font-bold">No Product To Display</div>
-            <Frown className="text-red-600" size={26} />
+            <div className="mr-3 text-3xl font-bold">No Product To Display</div>
+            <Frown className="text-red-600" size={40} />
           </div>
         )}
       </div>

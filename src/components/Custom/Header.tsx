@@ -2,10 +2,12 @@
 
 import { ChevronLeft, Equal, Plus, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
-import { useState, type JSX } from 'react';
+import { useContext, useState, type JSX } from 'react';
+import { CartContext } from '@/Context/CartContextProvider';
 
 const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
   const [toggle, setToggle] = useState<boolean>(false);
+  const { carts } = useContext(CartContext);
 
   if (back)
     return (
@@ -15,7 +17,7 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
             onClick={() => {
               setToggle(true);
             }}
-            className="ml-12 cursor-pointer"
+            className="ml-12 cursor-pointer transition-all duration-150 ease-in-out active:scale-105"
             size={26}
           />
         </Link>
@@ -30,7 +32,7 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
             onClick={() => {
               setToggle(true);
             }}
-            className="cursor-pointer transition-all duration-300"
+            className="cursor-pointer transition-all duration-150 ease-in-out active:scale-95"
             size={28}
           />
           <Plus className="cursor-pointer" size={28} />
@@ -43,9 +45,9 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
               setToggle(false);
             }}
             className="cursor-pointer transition-transform duration-300"
-            size={26}
+            size={28}
           />
-          <ul className="flex gap-8 text-lg font-normal">
+          <ul className="flex gap-8 text-lg font-bold">
             <Link href="/support">
               <li className="cursor-pointer">SUPPORT</li>
             </Link>
@@ -64,9 +66,17 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
           </ul>
         </div>
       ) : null}
-      <div className="mr-6">
+      <div className="relative mr-6">
         <Link href="/cart">
-          <ShoppingBag className="cursor-pointer" absoluteStrokeWidth />
+          <ShoppingBag
+            className="cursor-pointer active:scale-95"
+            absoluteStrokeWidth
+          />
+          {carts.length > 0 && (
+            <span className="absolute -right-3 -top-2 flex size-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+              {carts.length}
+            </span>
+          )}
         </Link>
       </div>
     </div>
