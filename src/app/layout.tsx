@@ -5,6 +5,7 @@ import './globals.css';
 import type { JSX } from 'react';
 import Footer from '@/components/custom/Footer';
 import CartContextProvider from '@/context/CartContextProvider';
+import { Toaster } from "@/components/ui/toaster";
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -30,6 +31,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({
         <CartContextProvider>
           <>
             {children}
+            <Toaster />
             <Footer />
           </>
         </CartContextProvider>

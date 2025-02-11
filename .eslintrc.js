@@ -23,7 +23,7 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ['next.config.ts','CartContextProvider.tsx'],
+  ignorePatterns: ['next.config.ts', 'CartContextProvider.tsx', 'ui', 'hooks'],
   rules: {
     'react/function-component-definition': [
       'error',
@@ -32,8 +32,8 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    "no-empty-function": "off",
-    "@typescript-eslint/no-empty-function": "error",
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': 'error',
     'jsx-a11y/anchor-has-content': 'off',
     semi: ['error', 'always'],
     'import/no-default-export': 'off',

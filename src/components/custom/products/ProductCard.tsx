@@ -7,6 +7,7 @@ import type { Product } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { calculatePrice } from '@/lib/utility';
 import { CartContext } from '@/context/CartContextProvider';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardInterface {
   product: Product;
@@ -18,6 +19,7 @@ const ProductCard: React.FC<ProductCardInterface> = ({
   const router = useRouter();
   const { AddToCart } = useContext(CartContext);
   const { id, title, images, discount, price } = product;
+  const { toast } = useToast();
 
   return (
     <div
@@ -240,6 +242,11 @@ const ProductCard: React.FC<ProductCardInterface> = ({
         type="button"
         className="group mt-auto flex items-center gap-2 self-start rounded-lg bg-black px-6 py-3 text-white transition-all hover:bg-black/90 active:scale-95"
         onClick={() => {
+          toast({
+            title: `${title} added to cart`,
+            className:'bg-green-500 text-white',
+            duration:2000
+          });
           AddToCart(product);
         }}
       >

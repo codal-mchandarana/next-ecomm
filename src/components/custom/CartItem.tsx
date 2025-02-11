@@ -5,6 +5,7 @@ import { useContext, type JSX } from 'react';
 import { calculatePrice } from '@/lib/utility';
 import { type Product } from '@/lib/types';
 import { CartContext } from '@/context/CartContextProvider';
+import { useToast } from '@/hooks/use-toast';
 
 const CartItem: React.FC<{ cartItem: Product }> = ({
   cartItem,
@@ -14,6 +15,8 @@ const CartItem: React.FC<{ cartItem: Product }> = ({
     IncrementCartItemQuantity,
     DecrementCartItemQuantity,
   } = useContext(CartContext);
+
+  const { toast } = useToast();
   return (
     <div className="rounded-lg bg-white p-4 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800 md:p-6">
       <div className="w-3/4 space-y-4 md:flex md:items-center md:gap-12 md:space-y-0">
@@ -93,6 +96,11 @@ const CartItem: React.FC<{ cartItem: Product }> = ({
             <div className="flex aspect-square w-10 items-center justify-center rounded border border-gray-300">
               <Trash2
                 onClick={() => {
+                  toast({
+                    title: `${cartItem.title} removed from cart`,
+                    variant: 'destructive',
+                    duration: 2000,
+                  });
                   DeleteCartItems(cartItem.id);
                 }}
                 className="cursor-pointer text-red-500 transition-all duration-150 ease-in-out active:scale-95"

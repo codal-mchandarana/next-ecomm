@@ -34,43 +34,44 @@ const MultiDropDown: React.FC<MultiDropDownInterface> = ({
   });
 
   return (
-    <div
-      ref={dropdown}
-      className="relative z-10 inline-flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-150 ease-in-out active:scale-95"
-    >
-      <button
-        type="button"
-        data-target="dropdown-with-check"
-        onClick={() => {
-          setIsOpen((prev) => !prev);
-        }}
-        className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-center text-sm font-semibold text-black transition-all duration-500 hover:bg-white "
+    <div ref={dropdown} className='relative'>
+      <div
+        className="relative z-10 inline-flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-150 ease-in-out active:scale-95"
       >
-        {selectedTag ? (
-          selectedTag
-        ) : (
-          <>
-            {Array.isArray(fieldvalue) && fieldvalue.length > 0
-              ? `${fieldvalue.length.toString()} Selected`
-              : 'Select Tags'}
-            <svg
-              className="dropdown-open:rotate-180 size-2.5 text-black"
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </>
-        )}
-      </button>
+        <button
+          type="button"
+          data-target="dropdown-with-check"
+          onClick={() => {
+            setIsOpen((prev) => !prev);
+          }}
+          className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-center text-sm font-semibold text-black hover:bg-white"
+        >
+          {selectedTag ? (
+            selectedTag
+          ) : (
+            <>
+              {Array.isArray(fieldvalue) && fieldvalue.length > 0
+                ? `${fieldvalue.length.toString()} Selected`
+                : 'Select Tags'}
+              <svg
+                className="dropdown-open:rotate-180 size-2.5 text-black"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </>
+          )}
+        </button>
+      </div>
       {selectedTag ? null : (
         <div
           id="dropdown-with-check"
