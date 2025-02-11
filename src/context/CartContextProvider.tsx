@@ -2,6 +2,7 @@
 import { createContext, type JSX, useState } from 'react';
 import type { CartItems, Product } from '@/lib/types';
 import { calculatePrice } from '@/lib/utility';
+import { useToast } from '@/hooks/use-toast';
 
 export const CartContext = createContext<CartItems>({
   carts: [],
@@ -18,6 +19,7 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
 }): JSX.Element => {
   const [items, setItems] = useState<Product[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const { toast } = useToast();
 
   const AddToCart = (item: Product): void => {
     const cartItemIndex = items.findIndex((product) => product.id === item.id);
@@ -74,15 +76,19 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
     const cartItemIndex = items.findIndex((product) => product.id === id);
 
     if (cartItemIndex !== -1) {
+      const item: Product = items[cartItemIndex];
       const quantity = items[cartItemIndex].qty || 0;
       if (quantity > 1) {
         items[cartItemIndex] = { ...items[cartItemIndex], qty: quantity - 1 };
         setItems(items);
       } else {
         setItems((prevItems) => prevItems.filter((val) => val.id !== id));
+        toast({
+          title: `${item.title} removed from cart`,
+          variant: 'destructive',
+          duration: 2000,
+        });
       }
-
-      const item: Product = items[cartItemIndex];
 
       let price: number = parseInt(item.price);
       if (item.discount) {

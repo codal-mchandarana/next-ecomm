@@ -7,6 +7,7 @@ import data from '@/data/data.json';
 import { calculatePrice } from '@/lib/utility';
 import { CartContext } from '@/context/CartContextProvider';
 import { type Product } from '@/lib/types';
+import { useToast } from '@/hooks/use-toast';
 
 const ProductDetailPage: React.FC = (): JSX.Element => {
   const params = useParams<{ id?: string }>();
@@ -18,6 +19,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
   const [selectedColor, setSelectedColor] = useState('Slate');
   const [selectedTag, setSelectedTag] = useState('Casual');
   const [selectedImage, setSelectedImage] = useState(0);
+  const { toast } = useToast();
 
   const product = {
     rating: 4.5,
@@ -259,6 +261,11 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
                 className="flex-1 rounded-md bg-gray-900 px-6 py-3 text-white transition-all hover:bg-black/90 active:scale-90"
                 onClick={() => {
                   const dummyProductData = { ...productData, qty: quantity };
+                  toast({
+                    title: `${productData?.title ?? 'Product'} added to cart`,
+                    className: 'bg-green-500 text-white',
+                    duration: 2000,
+                  });
                   AddToCartQty(dummyProductData as Product);
                 }}
               >
