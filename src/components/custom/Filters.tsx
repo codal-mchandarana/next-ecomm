@@ -66,7 +66,7 @@ const Filters: React.FC<PropsInterface> = ({
   const uniqueTags = [...new Set(items)];
 
   return (
-    <div className="mb-6 flex justify-between">
+    <div className="mb-6 flex justify-between xs:flex-col xs:gap-4 md:flex-row">
       <SearchBar
         filters={filters}
         selectedTag={selectedTag}
@@ -74,7 +74,7 @@ const Filters: React.FC<PropsInterface> = ({
         fieldvalue={searchVal}
         setFieldValue={setSearchVal}
       />
-      <div className="flex gap-8">
+      <div className="flex xs:flex-col xs:gap-2 md:flex-row md:gap-8">
         <MultiDropDown
           filters={filters}
           Tags={uniqueTags}
@@ -103,7 +103,7 @@ const Filters: React.FC<PropsInterface> = ({
             handleFilters('', [], 0);
             router.push('/');
           }}
-          className="h-full rounded-none bg-white font-semibold text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-150 ease-in-out hover:bg-gray-100 active:scale-95"
+          className="h-full rounded-none bg-white font-semibold text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-150 ease-in-out hover:bg-gray-100 active:scale-95 xs:h-[44px]"
         >
           Clear
         </Button>

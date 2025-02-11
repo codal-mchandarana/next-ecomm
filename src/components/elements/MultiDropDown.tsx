@@ -36,7 +36,7 @@ const MultiDropDown: React.FC<MultiDropDownInterface> = ({
   return (
     <div
       ref={dropdown}
-      className="relative z-[9] inline-flex shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] transition-all duration-150 ease-in-out active:scale-95"
+      className="relative z-10 inline-flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-150 ease-in-out active:scale-95"
     >
       <button
         type="button"

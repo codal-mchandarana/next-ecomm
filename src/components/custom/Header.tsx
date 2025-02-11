@@ -25,9 +25,9 @@ const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
     );
 
   return (
-    <div className="fixed top-0 z-10 flex h-14 w-full items-center justify-between bg-white shadow-lg">
+    <div className="fixed top-0 z-20 flex h-14 w-full items-center justify-between bg-white shadow-lg">
       {!toggle ? (
-        <div className="ml-12 flex w-1/11 justify-between">
+        <div className="ml-12 flex w-[6.5rem] justify-between">
           <Equal
             onClick={() => {
               setToggle(true);

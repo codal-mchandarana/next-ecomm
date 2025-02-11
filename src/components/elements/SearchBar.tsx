@@ -18,7 +18,7 @@ const SearchBar: React.FC<FilterProps> = ({
   };
 
   return (
-    <div className=" w-1/3 max-w-md rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+    <div className="rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] xs:w-full md:w-1/3">
       <div className="relative flex h-12 w-full items-center overflow-hidden rounded-lg bg-white focus-within:shadow-lg">
         <div className="grid h-full w-12 place-items-center text-gray-300">
           <svg
