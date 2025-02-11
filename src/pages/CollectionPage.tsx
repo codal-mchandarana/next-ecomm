@@ -1,7 +1,7 @@
 'use client';
 import type { JSX } from 'react';
 import { useParams } from 'next/navigation';
-import Header from '@/components/custom/Header';
+import Header from '@/components/custom1/Header';
 import data from '@/data/data.json';
 import { type Product } from '@/lib/types';
 import ProductListing from './ProductListing';

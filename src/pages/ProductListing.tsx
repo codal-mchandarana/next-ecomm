@@ -1,9 +1,9 @@
 'use client';
 import { useState, type JSX } from 'react';
 import { Frown } from 'lucide-react';
-import ProductCard from '@/components/custom/products/ProductCard';
+import ProductCard from '@/components/custom1/products/ProductCard';
 import type { Product } from '@/lib/types';
-import Filters from '@/components/custom/Filters';
+import Filters from '@/components/custom1/Filters';
 
 const ProductListing: React.FC<{ data: Product[]; selectedTag?: string }> = ({
   data = [],

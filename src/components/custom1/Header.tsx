@@ -3,7 +3,7 @@
 import { ChevronLeft, Equal, Plus, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import { useContext, useState, type JSX } from 'react';
-import { CartContext } from '@/context/CartContextProvider';
+import { CartContext } from '@/context1/CartContextProvider';
 
 const Header: React.FC<{ back: boolean }> = ({ back }): JSX.Element => {
   const [toggle, setToggle] = useState<boolean>(false);
