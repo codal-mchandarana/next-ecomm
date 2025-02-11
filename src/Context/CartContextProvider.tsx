@@ -6,6 +6,7 @@ import { calculatePrice } from '@/lib/utility';
 export const CartContext = createContext<CartItems>({
   carts: [],
   AddToCart: () => {},
+  AddToCartQty: () => {},
   DeleteCartItems: () => {},
   IncrementCartItemQuantity: () => {},
   DecrementCartItemQuantity: () => {},
@@ -28,16 +29,32 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
     } else {
       const newObj = { ...item, qty: 1 };
       setItems([...items, newObj]);
-      const cartArry: Product[] = items;
-      cartArry.push(item);
     }
 
     let price: number = parseInt(item.price);
     if (item.discount) {
       price = calculatePrice(item.price, item.discount);
     }
-    console.log("Price here ",price);
     setTotalPrice((prev) => prev + price);
+  };
+
+  const AddToCartQty = (item: Product): void => {
+    const cartItemIndex = items.findIndex((product) => product.id === item.id);
+
+    if (cartItemIndex != -1) {
+      const quantity = items[cartItemIndex].qty || 0;
+      items[cartItemIndex] = {
+        ...items[cartItemIndex],
+        qty: quantity + (item?.qty || 0),
+      };
+    } else {
+      setItems([...items, item]);
+    }
+    let price: number = parseInt(item.price);
+    if (item.discount) {
+      price = calculatePrice(item.price, item.discount);
+    }
+    setTotalPrice((prev) => prev + price * (item.qty || 1));
   };
 
   const DeleteCartItems = (id: number): void => {
@@ -96,6 +113,7 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
   const ctxValue: CartItems = {
     carts: items,
     AddToCart,
+    AddToCartQty,
     DeleteCartItems,
     IncrementCartItemQuantity,
     DecrementCartItemQuantity,

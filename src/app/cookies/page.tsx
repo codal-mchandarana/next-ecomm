@@ -1,5 +1,5 @@
 import { type JSX } from 'react';
-import Header from '@/components/Custom/Header';
+import Header from '@/components/custom/Header';
 import CookiesPage from '@/pages/CookiesPage';
 
 const Cookies: React.FC = (): JSX.Element => {

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useContext, type JSX } from 'react';
 import { calculatePrice } from '@/lib/utility';
 import { type Product } from '@/lib/types';
-import { CartContext } from '@/Context/CartContextProvider';
+import { CartContext } from '@/context/CartContextProvider';
 
 const CartItem: React.FC<{ cartItem: Product }> = ({
   cartItem,

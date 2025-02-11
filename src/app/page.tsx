@@ -1,6 +1,6 @@
 import { type JSX } from 'react';
 import ProductListing from '@/pages/ProductListing';
-import Header from '@/components/Custom/Header';
+import Header from '@/components/custom/Header';
 import data from '@/data/data.json';
 import type { Product } from '@/lib/types';
 

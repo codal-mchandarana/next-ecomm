@@ -65,6 +65,9 @@ export default {
 	  fontFamily: {
         plex: ["IBM Plex Mono", "monospace"],
       },
+	  screens: {
+	   'xs':'320px',
+	  },
   	}
   },
   plugins: [require("tailwindcss-animate")],

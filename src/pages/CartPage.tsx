@@ -2,9 +2,9 @@
 'use client';
 import { useContext, type JSX } from 'react';
 import { Frown, ShoppingCart } from 'lucide-react';
-import CartItem from '@/components/Custom/CartItem';
-import CartSummary from '@/components/Custom/CartSummary';
-import { CartContext } from '@/Context/CartContextProvider';
+import CartItem from '@/components/custom/CartItem';
+import CartSummary from '@/components/custom/CartSummary';
+import { CartContext } from '@/context/CartContextProvider';
 
 const CartPage: React.FC = (): JSX.Element => {
   const { carts } = useContext(CartContext);
@@ -12,7 +12,7 @@ const CartPage: React.FC = (): JSX.Element => {
   if (carts.length === 0) {
     return (
       <div className=" flex h-full items-center justify-center">
-        <div className="mr-3 text-3xl font-bold">YOUR CART IS EMPTY</div>
+        <div className="mr-3 font-bold xs:text-2xl sm:text-3xl">YOUR CART IS EMPTY</div>
         <Frown className="text-red-600" size={40} />
       </div>
     );

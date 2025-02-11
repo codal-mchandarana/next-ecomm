@@ -1,5 +1,5 @@
 import { type JSX } from 'react';
-import Header from '@/components/Custom/Header';
+import Header from '@/components/custom/Header';
 import SupportPage from '@/pages/SupportPage';
 
 const Support: React.FC = (): JSX.Element => {

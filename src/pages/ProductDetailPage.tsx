@@ -5,12 +5,12 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import data from '@/data/data.json';
 import { calculatePrice } from '@/lib/utility';
-import { CartContext } from '@/Context/CartContextProvider';
+import { CartContext } from '@/context/CartContextProvider';
 import { type Product } from '@/lib/types';
 
 const ProductDetailPage: React.FC = (): JSX.Element => {
   const params = useParams<{ id?: string }>();
-  const { AddToCart } = useContext(CartContext);
+  const { AddToCartQty } = useContext(CartContext);
   const id = params?.id ?? '';
   const productData = data.products.find((item) => String(item.id) === id);
   const [quantity, setQuantity] = useState(1);
@@ -119,7 +119,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
             <p className="text-gray-600">{product.description}</p>
 
             {/* Tags Dropdown */}
-            <div className='w-1/4 min-w-fit'>
+            <div className="w-1/4 min-w-fit">
               <label
                 htmlFor="tag"
                 className="block text-sm font-medium text-gray-700"
@@ -258,7 +258,8 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
                 type="button"
                 className="flex-1 rounded-md bg-gray-900 px-6 py-3 text-white transition-all hover:bg-black/90 active:scale-90"
                 onClick={() => {
-                  AddToCart(productData as Product);
+                  const dummyProductData = { ...productData, qty: quantity };
+                  AddToCartQty(dummyProductData as Product);
                 }}
               >
                 Add to Cart
