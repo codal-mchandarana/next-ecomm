@@ -1,5 +1,5 @@
 import { useContext, type JSX } from 'react';
-import { CartContext } from '@/context1/CartContextProvider';
+import { CartContext } from '@/context/CartContextProvider';
 
 const CartSummary: React.FC = (): JSX.Element => {
   const { TotalPrice } = useContext(CartContext);

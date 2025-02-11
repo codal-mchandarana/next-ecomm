@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Roboto, Inter } from 'next/font/google';
 import './globals.css';
 import type { JSX } from 'react';
-import Footer from '@/components/custom1/Footer';
-import CartContextProvider from '@/context1/CartContextProvider';
+import Footer from '@/components/custom/Footer';
+import CartContextProvider from '@/context/CartContextProvider';
 
 const roboto = Roboto({
   variable: '--font-roboto',

@@ -6,7 +6,7 @@ import { ShoppingCart } from 'lucide-react';
 import type { Product } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { calculatePrice } from '@/lib/utility';
-import { CartContext } from '@/context1/CartContextProvider';
+import { CartContext } from '@/context/CartContextProvider';
 
 interface ProductCardInterface {
   product: Product;

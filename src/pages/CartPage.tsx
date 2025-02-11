@@ -2,9 +2,9 @@
 'use client';
 import { useContext, type JSX } from 'react';
 import { Frown, ShoppingCart } from 'lucide-react';
-import CartItem from '@/components/custom1/CartItem';
-import CartSummary from '@/components/custom1/CartSummary';
-import { CartContext } from '@/context1/CartContextProvider';
+import CartItem from '@/components/custom/CartItem';
+import CartSummary from '@/components/custom/CartSummary';
+import { CartContext } from '@/context/CartContextProvider';
 
 const CartPage: React.FC = (): JSX.Element => {
   const { carts } = useContext(CartContext);

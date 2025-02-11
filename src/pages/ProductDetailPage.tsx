@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import data from '@/data/data.json';
 import { calculatePrice } from '@/lib/utility';
-import { CartContext } from '@/context1/CartContextProvider';
+import { CartContext } from '@/context/CartContextProvider';
 import { type Product } from '@/lib/types';
 
 const ProductDetailPage: React.FC = (): JSX.Element => {
