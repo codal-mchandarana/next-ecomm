@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardInterface> = ({
       aria-hidden="true"
       className="flex cursor-pointer flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800"
     >
-      <div className="h-56 w-full">
+      <div className="w-full xs:h-64 3xl:h-72">
         <Image
           onClick={() => {
             router.push(`product/${String(id)}`);
