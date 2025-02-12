@@ -11,7 +11,7 @@ export const CartContext = createContext<CartItems>({
   DeleteCartItems: () => {},
   IncrementCartItemQuantity: () => {},
   DecrementCartItemQuantity: () => {},
-  TotalPrice: 0,
+  DiscountedPrice: 0,
 });
 
 const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
@@ -123,7 +123,7 @@ const CartContextProvider: React.FC<{ children: JSX.Element }> = ({
     DeleteCartItems,
     IncrementCartItemQuantity,
     DecrementCartItemQuantity,
-    TotalPrice: totalPrice,
+    DiscountedPrice: totalPrice,
   };
 
   return (

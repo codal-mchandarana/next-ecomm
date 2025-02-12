@@ -2,7 +2,15 @@ import { useContext, type JSX } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
 
 const CartSummary: React.FC = (): JSX.Element => {
-  const { TotalPrice } = useContext(CartContext);
+  const { DiscountedPrice, carts } = useContext(CartContext);
+  const TotalPrice = carts.reduce(
+    (total, item) => {
+      const price = Number(item.price.replace(/,/g, '')) || 0;
+      return total + price * (item.qty ?? 0);
+    },
+    0
+  );
+
   return (
     <div className="sticky top-16 mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
       <p className="text-xl font-semibold text-red-500 dark:text-white">
@@ -22,9 +30,9 @@ const CartSummary: React.FC = (): JSX.Element => {
 
             <dl className="flex items-center justify-between gap-4">
               <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                Delivery:
+                Dicount:
               </dt>
-              <dd className="text-base  font-bold">-$0</dd>
+              <dd className="text-base  font-bold">-${(TotalPrice-DiscountedPrice).toLocaleString()}</dd>
             </dl>
 
             <dl className="flex items-center justify-between gap-4">
@@ -32,7 +40,7 @@ const CartSummary: React.FC = (): JSX.Element => {
                 Tax:
               </dt>
               <dd className="text-base  font-bold  text-gray-900 dark:text-white">
-                $0
+                +$0
               </dd>
             </dl>
           </div>
@@ -42,7 +50,7 @@ const CartSummary: React.FC = (): JSX.Element => {
               Total:
             </dt>
             <dd className="text-base font-bold text-gray-900 dark:text-white">
-              ${TotalPrice.toLocaleString()}
+              ${DiscountedPrice.toLocaleString()}
             </dd>
           </dl>
         </div>

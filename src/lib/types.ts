@@ -61,5 +61,5 @@ export interface CartItems {
   DeleteCartItems: (id: number) => void;
   IncrementCartItemQuantity: (id: number) => void;
   DecrementCartItemQuantity: (id: number) => void;
-  TotalPrice: number;
+  DiscountedPrice: number;
 }
