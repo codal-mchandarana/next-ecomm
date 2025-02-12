@@ -15,7 +15,7 @@ const ProductListing: React.FC<{ data: Product[]; selectedTag?: string }> = ({
     <section
       className={`${products.length <= 0 ? 'h-screen' : ''} mt-12 py-8 antialiased dark:bg-gray-900 md:py-12`}
     >
-      <div className="mx-auto h-full px-4 xl:max-w-screen-xl 2xl:px-0 3xl:max-w-screen-2xl">
+      <div className="mx-auto h-full px-4 xl:max-w-screen-xxl 2xl:px-0 3xl:max-w-screen-3xl">
         <Filters selectedTag={selectedTag} setProducts={setProducts} />
         {products.length > 0 ? (
           <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
