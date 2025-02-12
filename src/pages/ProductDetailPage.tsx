@@ -45,7 +45,7 @@ const ProductDetailPage: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="mt-10 h-screen overflow-auto bg-transparent">
+    <div className="mt-10 flex h-screen items-center overflow-auto bg-transparent">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
           {/* Product Images Section */}

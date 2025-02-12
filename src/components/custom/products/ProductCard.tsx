@@ -22,24 +22,26 @@ const ProductCard: React.FC<ProductCardInterface> = ({
   const { toast } = useToast();
 
   return (
-    <div
-      aria-hidden="true"
-      className="flex cursor-pointer flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800"
-    >
-      <div className="w-full xs:h-64 3xl:h-72">
-        <Image
-          onClick={() => {
-            router.push(`product/${String(id)}`);
-          }}
-          className="mx-auto h-full transition duration-150 hover:scale-105 dark:hidden"
-          src={images[0]?.src || images[1]?.src}
-          width={images[0]?.width} // Set an appropriate width
-          height={images[0]?.height} // Set an appropriate height
-          alt={`Product - ${String(id)} image-1`}
-        />
+    <div className="rounded-lg border border-gray-200 bg-white shadow-[0px_5px_15px_rgba(0,0,0,0.35)] dark:border-gray-700 dark:bg-gray-800">
+      <div
+        aria-hidden="true"
+        className="flex cursor-pointer flex-col"
+      >
+        <div className="m-4 xs:h-72 3xl:h-80">
+          <Image
+            onClick={() => {
+              router.push(`product/${String(id)}`);
+            }}
+            className="mx-auto h-full transition duration-150 hover:scale-105 dark:hidden"
+            src={images[0]?.src || images[1]?.src}
+            width={images[0]?.width} // Set an appropriate width
+            height={images[0]?.height} // Set an appropriate height
+            alt={`Product - ${String(id)} image-1`}
+          />
+        </div>
       </div>
 
-      <div className="pt-6">
+      <div className="m-6">
         <div className="mb-4 flex items-center justify-between gap-4">
           <Badge variant="destructive" className="">
             {discount}% off
@@ -236,23 +238,22 @@ const ProductCard: React.FC<ProductCardInterface> = ({
             ${price}
           </p>
         </div>
+        <button
+          type="button"
+          className="group mt-auto flex items-center gap-2 self-start rounded-lg bg-black px-6 py-3 text-white transition-all hover:bg-black/90 active:scale-95"
+          onClick={() => {
+            toast({
+              title: `${title} added to cart`,
+              className: 'bg-green-500 text-white',
+              duration: 2000,
+            });
+            AddToCart(product);
+          }}
+        >
+          <ShoppingCart className="size-5" />
+          <span className="font-medium">Add to Cart</span>
+        </button>
       </div>
-
-      <button
-        type="button"
-        className="group mt-auto flex items-center gap-2 self-start rounded-lg bg-black px-6 py-3 text-white transition-all hover:bg-black/90 active:scale-95"
-        onClick={() => {
-          toast({
-            title: `${title} added to cart`,
-            className:'bg-green-500 text-white',
-            duration:2000
-          });
-          AddToCart(product);
-        }}
-      >
-        <ShoppingCart className="size-5" />
-        <span className="font-medium">Add to Cart</span>
-      </button>
     </div>
   );
 };
